@@ -30,24 +30,23 @@
             const innerHeight = document.documentElement.clientHeight;
             switch (scrollControllerBtn.dataset.scrollPosition) {
                 case '':
-                    if (pageY > innerHeight) {
+                    if (pageY > 50) {
                         scrollControllerBtn.dataset.scrollPosition = 'up';
-                        scrollControllerBtn.innerHTML = 'Наверх <i class="fa fa-angle-up"></i>';
                     }
 
                     break;
 
                 case 'up':
-                    if (pageY < innerHeight) {
+                    if (pageY < 50) {
                         scrollControllerBtn.dataset.scrollPosition = 'down';
-                        scrollControllerBtn.innerHTML = '<i class="fa fa-angle-down"></i>';
+                        scrollControllerBtn.innerHTML = "<span class='fo'>▼</span>";
                     }
                     break;
 
                 case 'down':
-                    if (pageY > innerHeight) {
+                    if (pageY > 50) {
                         scrollControllerBtn.dataset.scrollPosition = 'up';
-                        scrollControllerBtn.innerHTML = 'Наверх <i class="fa fa-angle-up"></i>';
+                        scrollControllerBtn.innerHTML = "<span class='fo'>Наверх ▲</span>";
                     }
 
                     break;
@@ -70,7 +69,9 @@
             this.scrollControllerWrapper.className = 'rs-scroll-controller';
             this.scrollControllerWrapper.appendChild(this.scrollControllerBtn);
             this.mainContainer.appendChild(this.scrollControllerWrapper);
-            this.scrollControllerBtn.innerHTML = 'Наверх <i class="fa fa-angle-up"></i>';
+            //this.scrollControllerBtn.innerHTML = 'Наверх ▲';
+            //this.scrollControllerBtn.innerHTML = '<i class="fa fa-angle-down"></i>';
+            this.scrollControllerBtn.innerHTML = "<span class='fo'>Наверх ▲</span>";
             this.scrollControllerBtn.dataset.scrollPosition = '';
 
             window.addEventListener('scroll', () =>
@@ -96,7 +97,7 @@
                             document.documentElement.clientHeight :
                             pageYLabel
                         );
-                }
+                }RsScrollController.scrollHandlerForBtn(this.scrollControllerBtn);
             });
         }
     };
