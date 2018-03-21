@@ -6,7 +6,7 @@
 		 * @param {number} to
 		 */
         scrollTo(to) {
-            const duration = 80;
+            const duration = 70;
 
             if (duration <= 0) return;
 
@@ -39,14 +39,14 @@
                 case 'up':
                     if (pageY < 50) {
                         scrollControllerBtn.dataset.scrollPosition = 'down';
-                        scrollControllerBtn.innerHTML = "<span class='fo'>▼</span>";
+                        scrollControllerBtn.innerHTML = "<div class='fo'>▼</div>";
                     }
                     break;
 
                 case 'down':
                     if (pageY > 50) {
                         scrollControllerBtn.dataset.scrollPosition = 'up';
-                        scrollControllerBtn.innerHTML = "<span class='fo'>Наверх ▲</span>";
+                        scrollControllerBtn.innerHTML = "<div class='fo'>▲ Наверх</div>";
                     }
 
                     break;
@@ -71,7 +71,7 @@
             this.mainContainer.appendChild(this.scrollControllerWrapper);
             //this.scrollControllerBtn.innerHTML = 'Наверх ▲';
             //this.scrollControllerBtn.innerHTML = '<i class="fa fa-angle-down"></i>';
-            this.scrollControllerBtn.innerHTML = "<span class='fo'>Наверх ▲</span>";
+            this.scrollControllerBtn.innerHTML = "<div class='fo'>▲ Наверх</div>";
             this.scrollControllerBtn.dataset.scrollPosition = '';
 
             window.addEventListener('scroll', () =>

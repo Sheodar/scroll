@@ -6,6 +6,7 @@
 	height: 799px;
 	z-index: 100;
     opacity: 0.4;
+     vertical-align: top;
 }
 .rs-scroll-controller:hover {
     opacity: 1;
@@ -23,19 +24,17 @@
 	line-height: 1.75;
 	transition: .15s ease-in-out;
 	transition-property: transform opacity;
-	cursor: pointer;
 	opacity: 1;
 	visibility: visible;
     color: rgba(255, 255,255, 1);
+    text-align: left;
+    cursor: pointer;
 }
 
 .rs-scroll-btn .fo{
+    height: 98%;
 	font-size: 15px;
 	color: rgba(255, 255,255, 1);
-}
-
-.rs-scroll-btn[data-scroll-position=down] {
-	transform: rotate(0deg);
 }
 
 .rs-scroll-btn:focus {
