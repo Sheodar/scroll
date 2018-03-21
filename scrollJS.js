@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name         RedServerController
+// @version      1.0
+// @description  try to take over the world!
+// @author       Sheodar
+// @match        https://redserver.su/*
+// @match        http://redserver.su/*
+// @grant        none
+// ==/UserScript==
+
 (function(root) {
     'use strict';
 
