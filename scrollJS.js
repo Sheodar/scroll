@@ -15,6 +15,23 @@
     const duration = 70;            //Скорость прокрутки страницы (меньше = быстрее)
     const switchingHeight = 100;    //Высота, на которую необходимо опустить страницу для замены позиции вверх/вниз.
                                     //Условно, при 50 хватит 1 прокрутки колесика мышки для появления кнопки "Наверх", при 100 - 2 прокрутки и т.д. по аналогии.
+// ==UserScript==
+// @name         RedServerController
+// @version      1.0
+// @description  try to take over the world!
+// @author       Sheodar
+// @match        https://redserver.su/*
+// @match        http://redserver.su/*
+// @grant        none
+// ==/UserScript==
+
+(function(root) {
+    'use strict';
+    const textUp = "▲ Наверх";      //Надпись для поднятия страницы вверх
+    const textButtom = "▼";         //Надпись для возвращения страницы в исходнуб точку вниз
+    const duration = 70;            //Скорость прокрутки страницы (меньше = быстрее)
+    const switchingHeight = 100;    //Высота, на которую необходимо опустить страницу для замены позиции вверх/вниз.
+    //Условно, при 50 хватит 1 прокрутки колесика мышки для появления кнопки "Наверх", при 100 - 2 прокрутки и т.д. по аналогии.
 
     root.RsScrollController = class RsScrollController {
         scrollTo(to) {
@@ -69,7 +86,6 @@
         initScrollController() {
             let pageYLabel = 0;
             const resetAutoScroll = () => clearTimeout(this.scrollTimeout);
-
             this.scrollControllerWrapper = document.createElement('div');
             this.scrollControllerBtn = document.createElement('button');
 
@@ -111,6 +127,14 @@
 
 (function() {
     'use strict';
+    var x = 1;
     const rsScrollController = new RsScrollController();
-    rsScrollController.init();
+    window.addEventListener('scroll', () =>{
+        if (x === 1){
+            rsScrollController.init();
+            x++;
+        }
+
+    }
+                           );
 })();
