@@ -5,8 +5,8 @@
 	width: 90px;
 	height: 799px;
 	z-index: 100;
-    opacity: 0.4;
-     vertical-align: top;
+	opacity: 0.4;
+	vertical-align: top;
 }
 .rs-scroll-controller:hover {
     opacity: 1;
