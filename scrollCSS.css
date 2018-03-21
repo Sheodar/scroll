@@ -32,7 +32,8 @@
 }
 
 .rs-scroll-btn .fo{
-    height: 98%;
+	font-family: Arial;
+	height: 98%;
 	font-size: 15px;
 	color: rgba(255, 255,255, 1);
 }
