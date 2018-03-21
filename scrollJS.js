@@ -10,16 +10,15 @@
 
 (function(root) {
     'use strict';
+    const textUp = "▲ Наверх";      //Надпись для поднятия страницы вверх
+    const textButtom = "▼";         //Надпись для возвращения страницы в исходнуб точку вниз
+    const duration = 70;            //Скорость прокрутки страницы (меньше = быстрее)
+    const switchingHeight = 100;    //Высота, на которую необходимо опустить страницу для замены позиции вверх/вниз.
+                                    //Условно, при 50 хватит 1 прокрутки колесика мышки для появления кнопки "Наверх", при 100 - 2 прокрутки и т.д. по аналогии.
 
     root.RsScrollController = class RsScrollController {
-        /**
-		 * @param {number} to
-		 */
         scrollTo(to) {
-            const duration = 70;
-
             if (duration <= 0) return;
-
             const isSlowScroll = document.scrollingElement.scrollTop <= Math.abs(to - 250);
             const difference = to - document.scrollingElement.scrollTop;
             const perTick = difference / duration * 10;
@@ -37,26 +36,25 @@
 
         static scrollHandlerForBtn(scrollControllerBtn) {
             const pageY = window.pageYOffset || document.documentElement.scrollTop;
-            const innerHeight = document.documentElement.clientHeight;
             switch (scrollControllerBtn.dataset.scrollPosition) {
                 case '':
-                    if (pageY > 50) {
+                    if (pageY > switchingHeight) {
                         scrollControllerBtn.dataset.scrollPosition = 'up';
                     }
 
                     break;
 
                 case 'up':
-                    if (pageY < 50) {
+                    if (pageY < switchingHeight) {
                         scrollControllerBtn.dataset.scrollPosition = 'down';
-                        scrollControllerBtn.innerHTML = "<div class='fo'>▼</div>";
+                        scrollControllerBtn.innerHTML = "<div class='fo'>"+textButtom+"</div>";
                     }
                     break;
 
                 case 'down':
-                    if (pageY > 50) {
+                    if (pageY > switchingHeight) {
                         scrollControllerBtn.dataset.scrollPosition = 'up';
-                        scrollControllerBtn.innerHTML = "<div class='fo'>▲ Наверх</div>";
+                        scrollControllerBtn.innerHTML = "<div class='fo'>"+textUp+"</div>";
                     }
 
                     break;
@@ -79,9 +77,7 @@
             this.scrollControllerWrapper.className = 'rs-scroll-controller';
             this.scrollControllerWrapper.appendChild(this.scrollControllerBtn);
             this.mainContainer.appendChild(this.scrollControllerWrapper);
-            //this.scrollControllerBtn.innerHTML = 'Наверх ▲';
-            //this.scrollControllerBtn.innerHTML = '<i class="fa fa-angle-down"></i>';
-            this.scrollControllerBtn.innerHTML = "<div class='fo'>▲ Наверх</div>";
+            this.scrollControllerBtn.innerHTML = "<div class='fo'>"+textUp+"</div>";
             this.scrollControllerBtn.dataset.scrollPosition = '';
 
             window.addEventListener('scroll', () =>
