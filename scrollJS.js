@@ -12,23 +12,6 @@
     'use strict';
     const textUp = "▲ Наверх";      //Надпись для поднятия страницы вверх
     const textButtom = "▼";         //Надпись для возвращения страницы в исходнуб точку вниз
-    const duration = 70;            //Скорость прокрутки страницы (меньше = быстрее)
-    const switchingHeight = 100;    //Высота, на которую необходимо опустить страницу для замены позиции вверх/вниз.
-                                    //Условно, при 50 хватит 1 прокрутки колесика мышки для появления кнопки "Наверх", при 100 - 2 прокрутки и т.д. по аналогии.
-// ==UserScript==
-// @name         RedServerController
-// @version      1.0
-// @description  try to take over the world!
-// @author       Sheodar
-// @match        https://redserver.su/*
-// @match        http://redserver.su/*
-// @grant        none
-// ==/UserScript==
-
-(function(root) {
-    'use strict';
-    const textUp = "▲ Наверх";      //Надпись для поднятия страницы вверх
-    const textButtom = "▼";         //Надпись для возвращения страницы в исходнуб точку вниз
     const duration = 60;            //Скорость прокрутки страницы (меньше = быстрее)
     const switchingHeight = 100;    //Высота, на которую необходимо опустить страницу для замены позиции вверх/вниз.
     //Условно, при 50 хватит 1 прокрутки колесика мышки для появления кнопки "Наверх", при 100 - 2 прокрутки и т.д. по аналогии.
@@ -64,14 +47,14 @@
                 case 'up':
                     if (pageY < switchingHeight) {
                         scrollControllerBtn.dataset.scrollPosition = 'down';
-                        scrollControllerBtn.innerHTML = "<div class='fo'>"+textButtom+"</div>";
+                        scrollControllerBtn.innerHTML = "<div class='bot'>"+textButtom+"</div>";
                     }
                     break;
 
                 case 'down':
                     if (pageY > switchingHeight) {
                         scrollControllerBtn.dataset.scrollPosition = 'up';
-                        scrollControllerBtn.innerHTML = "<div class='fo'>"+textUp+"</div>";
+                        scrollControllerBtn.innerHTML = "<div class='top'>"+textUp+"</div>";
                     }
 
                     break;
@@ -93,7 +76,7 @@
             this.scrollControllerWrapper.className = 'rs-scroll-controller';
             this.scrollControllerWrapper.appendChild(this.scrollControllerBtn);
             this.mainContainer.appendChild(this.scrollControllerWrapper);
-            this.scrollControllerBtn.innerHTML = "<div class='fo'>"+textUp+"</div>";
+            this.scrollControllerBtn.innerHTML = "<div class='top'>"+textUp+"</div>";
             this.scrollControllerBtn.dataset.scrollPosition = '';
 
             window.addEventListener('scroll', () =>
