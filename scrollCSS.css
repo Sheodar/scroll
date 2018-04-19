@@ -2,8 +2,8 @@
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
-	width: 120px;
-	height: 799px;
+	width: 125px;
+	height: 100vh;
 	z-index: 100;
     opacity: 0.5;
      vertical-align: top;
@@ -36,6 +36,7 @@
     height: 98%;
 	font-size: 15px;
     font-family: Arial;
+    font-weight: bold;
 	color: rgba(255, 255,255, 1);
 }
 
@@ -62,7 +63,7 @@
 	visibility: hidden;
 }
 
-@media (max-width: 799px) {
+@media (max-width: 100vh) {
 	.rs-scroll-controller {
 		display: none;
 		visibility: hidden;

@@ -5,6 +5,7 @@
 // @author       Sheodar
 // @match        https://redserver.su/*
 // @match        http://redserver.su/*
+// @match        https://mods.factorio.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -12,9 +13,11 @@
     'use strict';
     //------------------------------------------------======CONFIG======--------------------------------------------------------------
     //Надпись для поднятия страницы вверх
-    const textUp = "▲ Наверх";
+    //const textUp = "▲ Наверх";
+    const textUp = "<img src=\"https://i.imgur.com/bxJbci8.png\"> "+" Наверх";
     //Надпись для возвращения страницы в исходнуб точку вниз
-    const textButtom = "▼";
+    //const textButtom = "▼";
+    const textButtom = "<img src=\"https://i.imgur.com/1Qg1pPz.png\">";
     //Скорость прокрутки страницы (меньше = быстрее) Минимум - 10.
     const duration = 10;
     //Высота, на которую необходимо опустить страницу для замены позиции вверх/вниз.
@@ -44,6 +47,13 @@
         static scrollHandlerForBtn(scrollControllerBtn) {
             const pageY = window.pageYOffset || document.documentElement.scrollTop;
             switch (scrollControllerBtn.dataset.scrollPosition) {
+                case '':
+                    if (pageY > switchingHeight) {
+                        scrollControllerBtn.dataset.scrollPosition = 'up';
+                        scrollControllerBtn.innerHTML = "<div class='top'>"+textUp+"</div>";
+                    }
+
+                    break;
                 case 'up':
                     if (pageY < switchingHeight) {
                         scrollControllerBtn.dataset.scrollPosition = 'down';
@@ -72,9 +82,16 @@
             this.scrollControllerWrapper.className = 'rs-scroll-controller';
             this.scrollControllerWrapper.appendChild(this.scrollControllerBtn);
             this.mainContainer.appendChild(this.scrollControllerWrapper);
-            this.scrollControllerBtn.dataset.scrollPosition = 'up';
-            window.addEventListener('scroll', () =>
-                                    RsScrollController.scrollHandlerForBtn(this.scrollControllerBtn)
+            var z = 1;
+            if (z === 1){
+                this.scrollControllerBtn.dataset.scrollPosition = 'up';
+            }else{
+                this.scrollControllerBtn.dataset.scrollPosition = '';
+            }
+            window.addEventListener('scroll', () =>{
+                RsScrollController.scrollHandlerForBtn(this.scrollControllerBtn);
+                z++;
+            }
                                    );
             this.scrollControllerBtn.addEventListener('click', () => {
                 const pageY = window.pageYOffset || document.documentElement.scrollTop;
@@ -97,7 +114,7 @@
                             document.documentElement.clientHeight :
                             pageYLabel
                         );
-                }
+                }RsScrollController.scrollHandlerForBtn(this.scrollControllerBtn);
             });
         }
     };
@@ -105,13 +122,18 @@
     var x = 1;
     const rsScrollController = new RsScrollController();
     window.addEventListener('scroll', () =>{
-        if (initScrollValue === x){
+        if (initScrollValue === x && x === 1){
             rsScrollController.initScrollController();
             x++;
         }else{
             x++;
         }
-
     }
                            );
+    if ((window.pageYOffset || document.documentElement.scrollTop) > switchingHeight && x === 1)
+    {
+        rsScrollController.initScrollController();
+        x++;
+    }
+
 })(window);
