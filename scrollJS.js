@@ -15,7 +15,7 @@
     //Надпись для поднятия страницы вверх
     //const textUp = "▲ Наверх";
     const textUp = "<img src=\"https://i.imgur.com/bxJbci8.png\"> "+" Наверх";
-    //Надпись для возвращения страницы в исходнуб точку вниз
+    //Надпись для возвращения страницы в исходную точку вниз
     //const textButtom = "▼";
     const textButtom = "<img src=\"https://i.imgur.com/1Qg1pPz.png\">";
     //Скорость прокрутки страницы (меньше = быстрее) Минимум - 10.
@@ -25,7 +25,7 @@
     //при 100 - 2 прокрутки и т.д. по аналогии.
     const switchingHeight = 100;
     //Сколько необходимо скролов для изначального появлнения кнопки
-    const initScrollValue = 1;
+    const initScrollValue = 2;
     //---------------------------------------------------------------------------------------------------------------------------------
 
     root.RsScrollController = class RsScrollController {
@@ -120,20 +120,23 @@
     };
 
     var x = 1;
+    var z = 1;
     const rsScrollController = new RsScrollController();
     window.addEventListener('scroll', () =>{
-        if (initScrollValue === x && x === 1){
+        if (initScrollValue === x && z === 1){
             rsScrollController.initScrollController();
             x++;
+            z++;
         }else{
             x++;
+
         }
     }
                            );
-    if ((window.pageYOffset || document.documentElement.scrollTop) > switchingHeight && x === 1)
+    if ((window.pageYOffset || document.documentElement.scrollTop) > switchingHeight && z === 1)
     {
         rsScrollController.initScrollController();
-        x++;
+        z++;
     }
 
 })(window);
