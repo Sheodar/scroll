@@ -120,23 +120,17 @@
     };
 
     var x = 1;
-    var z = 1;
     const rsScrollController = new RsScrollController();
-    window.addEventListener('scroll', () =>{
-        if (initScrollValue === x && z === 1){
-            rsScrollController.initScrollController();
-            x++;
-            z++;
-        }else{
-            x++;
-
-        }
-    }
-                           );
-    if ((window.pageYOffset || document.documentElement.scrollTop) > switchingHeight && z === 1)
+    if ((window.pageYOffset || document.documentElement.scrollTop) > switchingHeight)
     {
         rsScrollController.initScrollController();
-        z++;
+    }else{
+        window.addEventListener('scroll', () =>{
+            if (initScrollValue === x){
+                rsScrollController.initScrollController();
+            }x++;
+        }
+                               );
     }
-
 })(window);
+
