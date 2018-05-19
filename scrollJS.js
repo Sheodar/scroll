@@ -119,16 +119,17 @@
         }
     };
 
-    var x = 1;
-    const rsScrollController = new RsScrollController();
+var x = true; //Залочит повторное появление кнопки
+    const rsScrollController = new root.RsScrollController();
     if ((window.pageYOffset || document.documentElement.scrollTop) > switchingHeight)
     {
         rsScrollController.initScrollController();
     }else{
         window.addEventListener('scroll', () =>{
-            if (initScrollValue === x){
+            if ((window.pageYOffset || document.documentElement.scrollTop) > (initScrollValue*90) && x){
                 rsScrollController.initScrollController();
-            }x++;
+                x = false; //Залочит повторное появление кнопки
+            }
         }
                                );
     }
